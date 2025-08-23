@@ -31,7 +31,7 @@ function playRound(playerChoice, computerChoice) {
 
 // update score and show result
 function updateScore(result, playerChoice, computerChoice) {
-    let message = You chose ${choiceEmojis[playerChoice]}, Computer chose ${choiceEmojis[computerChoice]} → ;
+    let message = `You chose ${choiceEmojis[playerChoice]}, Computer chose ${choiceEmojis[computerChoice]} →` ;
 
     if (result === "player") {
         playerScore++;
