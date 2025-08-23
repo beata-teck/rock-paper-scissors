@@ -108,3 +108,12 @@ document.getElementById("round7").addEventListener("click", () => (maxRound = 7)
 
 // restart button
 document.getElementById("restart").addEventListener("click", restartGame);
+const infoBtn=document.getElementById("info-btn");
+const infoPopUp=document.getElementById("info-popup");
+const closeInfo=document.getElementById("close-info");
+infoBtn.addEventListener("click",()=>{
+    infoPopUp.classList.remove("hidden");
+});
+closeInfo.addEventListener("click",()=>{
+    infoPopUp.classList.add("hidden");
+});
