@@ -71,9 +71,20 @@ document.querySelectorAll(".choice").forEach(button => {
             setTimeout(() => alert("Game Over"), 50);
         }
     });
+    flashResult(button , result);
 });
 
 // round selection
 document.getElementById("round5").addEventListener("click", () => (maxRound = 5));
 document.getElementById("round7").addEventListener("click", () => (maxRound = 7));
 document.getElementById("restart").addEventListener("click", restartGame);
+function flashResult(choiceButton, result){
+    let color;
+    if(result==="win") color="green";
+    else if(result==="lose") color="red";
+    else color="gold";
+    choiceButton.style.boxShadow=`0 0 20px ${color}`;
+    setTimeout(()=>{
+        choiceButton.style.boxShadow="none";
+    }, 500);
+}
