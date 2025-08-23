@@ -11,12 +11,18 @@ function getComputerChoice(){
 }
 //playing one round
 function playRound(playerChoice,computerChoice){
-    if(playerChoice===computerChoice)
+    console.log("player chose :", playerChoice);
+    console.log("computer chose :", computerChoice);
+    if(playerChoice === computerChoice)
+        console.log("Result: Draw");
         return "draw!";
     if(
         (playerChoice === "rock" && computerChoice === "scissor" ) || (playerChoice === "paper" && computerChoice === "rock") || (playerChoice === "scissor" && computerChoice === "paper")
-    ) return "Win!";
-    return "lose";
+    ){ console.log("Result:player win");
+        return "player";
+    }
+    console.log("Result:computer win");
+    return "computer";
     }
     //update score
     function updateScore(result){
@@ -39,3 +45,21 @@ function playRound(playerChoice,computerChoice){
 
         document.getElementById("result").innerText="";
     }
+    //event listener
+    document.querySelectorAll(".choice").forEach( button=>{
+        button.addEventListener("click", ()=>{
+            if(currentRound >= maxRound)
+                return;
+            const playerChoice=button.dataset.choice;
+            const computerChoice=getComputerChoice();
+            const result=playRound(playerChoice , computerChoice);
+            currentRound++;
+            updateScore(result);
+            if(currentRound>= maxRound)
+                setTimeout(()=>alert("Game Over") , 50);
+        });
+    });
+    //round selection
+    document.getElementById("round5" ).addEventListener("click" , ()=> (maxRound=5));
+    document.getElementById("round7" ).addEventListener("click" , ()=> (maxRound=7));
+    document.getElementById("restart").addEventListener("click" , restartGame);
