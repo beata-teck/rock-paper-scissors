@@ -27,9 +27,20 @@ function playRound(playerChoice, computerChoice) {
 // Update score and result
 function updateScore(result, playerChoice, computerChoice){
   let message = `${playerName} chose ${choiceEmojis[playerChoice]}, Computer chose ${choiceEmojis[computerChoice]} →` ;
-  if(result==="player"){ playerScore++; message+=`${playerName} Won 🎉`; document.getElementById("result").style.color="green"; }
-  else if(result==="computer"){ computerScore++; message+="Computer Won 🤖"; document.getElementById("result").style.color="red"; }
-  else { message+="It's a Draw 😐"; document.getElementById("result").style.color="orange"; }
+  if(result==="player"){ 
+    playerScore++; 
+    message+=`${playerName} Won 🎉`; 
+    document.getElementById("result").style.color="green"; 
+  }
+  else if(result==="computer"){ 
+    computerScore++; 
+    message+="Computer Won 🤖"; 
+    document.getElementById("result").style.color="red"; 
+  }
+  else { 
+    message+="It's a Draw 😐"; 
+    document.getElementById("result").style.color="orange"; 
+  }
 
   document.getElementById("player-score").innerText = playerScore;
   document.getElementById("computer-score").innerText = computerScore;
@@ -40,13 +51,16 @@ function updateScore(result, playerChoice, computerChoice){
   document.getElementById("player-score-label").childNodes[0].textContent = playerName + ": ";
 }
 
-// Show round popup
-function showRoundResult(message){
+// Show round popup with optional callback
+function showRoundResult(message, callback){
   const popup = document.getElementById("round-result-popup");
   const msg = document.getElementById("round-result-message");
   msg.innerText = message;
   popup.classList.add("show");
-  setTimeout(()=> popup.classList.remove("show"),1500);
+  setTimeout(() => {
+    popup.classList.remove("show");
+    if(callback) callback(); // run callback after popup disappears
+  }, 1500);
 }
 
 // Restart game
@@ -94,23 +108,26 @@ document.querySelectorAll(".choice").forEach(button=>{
 
       // Show round result popup
       let roundMessage = "";
-      if(result === "player") roundMessage = `🎉 ${playerName} won this round!`;
+      if(result === "player") roundMessage =`🎉 ${playerName} won this round!`;
       else if(result === "computer") roundMessage = `🤖 Computer won this round!`;
       else roundMessage = "😐 It's a draw!";
-      showRoundResult(roundMessage);
-      // Show final winner after last round
+      // If this is the last round, show final winner after popup disappears
       if(currentRound >= maxRound){
-        // Disable choice buttons
         document.querySelectorAll(".choice").forEach(btn => btn.disabled = true);
 
-        setTimeout(() => {
+        showRoundResult(roundMessage, () => {
           let finalMessage = "";
           if(playerScore > computerScore) finalMessage = `🏆 ${playerName} is the Champion!`;
           else if(playerScore < computerScore) finalMessage = "🤖 Computer Wins the Match!";
           else finalMessage = "😐 It's a Tie Overall!";
+
           showRoundResult(finalMessage);
-        }, 1800);
+        });
+      } else {
+        // Normal round popup
+        showRoundResult(roundMessage);
       }
+
     }, 1200);
   });
 });
@@ -128,7 +145,6 @@ document.getElementById("setName").addEventListener("click", ()=>{
   if(input) playerName = input;
   document.getElementById("player-name-input").style.display = "none";
 
-  // Update scoreboard label immediately
   document.getElementById("player-score-label").childNodes[0].textContent = playerName + ": ";
 });
 
