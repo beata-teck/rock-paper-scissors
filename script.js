@@ -1,22 +1,23 @@
+// Game state
 let playerScore = 0;
 let computerScore = 0;
 let currentRound = 0;
 let maxRound = 5;
 
-// map choices to emojis
+// Map choices to emojis
 const choiceEmojis = {
     rock: "🪨",
     paper: "📄",
     scissor: "✂️"
 };
 
-// get computer choice
+// Get computer choice
 function getComputerChoice() {
     const choice = ["rock", "paper", "scissor"];
     return choice[Math.floor(Math.random() * choice.length)];
 }
 
-// play one round
+// Play one round
 function playRound(playerChoice, computerChoice) {
     if (playerChoice === computerChoice) return "draw";
 
@@ -29,9 +30,9 @@ function playRound(playerChoice, computerChoice) {
     return "computer";
 }
 
-// update score and show result
+// Update score and show round result
 function updateScore(result, playerChoice, computerChoice) {
-    let message = `You chose ${choiceEmojis[playerChoice]}, Computer chose ${choiceEmojis[computerChoice]} →` ;
+    let message = `You chose ${choiceEmojis[playerChoice]}, Computer chose ${choiceEmojis[computerChoice]} → `;
 
     if (result === "player") {
         playerScore++;
@@ -52,7 +53,19 @@ function updateScore(result, playerChoice, computerChoice) {
     document.getElementById("result").innerText = message;
 }
 
-// restart game
+// Show final round popup
+function showRoundResult(message) {
+    const popup = document.getElementById("round-result-popup");
+    const msg = document.getElementById("round-result-message");
+    msg.innerText = message;
+    popup.classList.add("show");
+
+    setTimeout(() => {
+        popup.classList.remove("show");
+    }, 1500);
+}
+
+// Restart game
 function restartGame() {
     playerScore = 0;
     computerScore = 0;
@@ -65,7 +78,7 @@ function restartGame() {
     document.getElementById("computer-hand").innerText = "👊";
 }
 
-// button click events
+// Event listeners for buttons
 document.querySelectorAll(".choice").forEach(button => {
     button.addEventListener("click", () => {
         if (currentRound >= maxRound) return;
@@ -73,13 +86,13 @@ document.querySelectorAll(".choice").forEach(button => {
         const playerChoice = button.dataset.choice;
         const computerChoice = getComputerChoice();
 
-        // show fists first
+        // Show fists first
         document.getElementById("player-hand").innerText = "👊";
         document.getElementById("computer-hand").innerText = "👊";
         document.getElementById("player-hand").classList.add("hand");
         document.getElementById("computer-hand").classList.add("hand");
 
-        // reveal choices after shake
+        // Reveal choices after shake
         setTimeout(() => {
             document.getElementById("player-hand").classList.remove("hand");
             document.getElementById("computer-hand").classList.remove("hand");
@@ -90,51 +103,21 @@ document.querySelectorAll(".choice").forEach(button => {
             currentRound++;
             updateScore(playRound(playerChoice, computerChoice), playerChoice, computerChoice);
 
+            // Show final round result
             if (currentRound >= maxRound) {
                 let finalMessage = "";
                 if (playerScore > computerScore) finalMessage = "🎉 You are the Champion!";
                 else if (playerScore < computerScore) finalMessage = "🤖 Computer Wins the Match!";
                 else finalMessage = "😐 It's a Tie Overall!";
-
-                setTimeout(() => alert(finalMessage), 300);
+                showRoundResult(finalMessage);
             }
-        }, 1200);
+        }, 1200); // match shake animation
     });
 });
 
-// round selection
+// Round selection
 document.getElementById("round5").addEventListener("click", () => (maxRound = 5));
 document.getElementById("round7").addEventListener("click", () => (maxRound = 7));
 
-// restart button
+// Restart button
 document.getElementById("restart").addEventListener("click", restartGame);
-const infoBtn=document.getElementById("info-btn");
-const infoPopUp=document.getElementById("info-popup");
-const closeInfo=document.getElementById("close-info");
-infoBtn.addEventListener("click",()=>{
-    infoPopUp.classList.remove("hidden");
-});
-closeInfo.addEventListener("click",()=>{
-    infoPopUp.classList.add("hidden");
-});
-function showRoundResult(message) {
-    const popup = document.getElementById("round-result-popup");
-    const msg = document.getElementById("round-result-message");
-    msg.innerText = message;
-    popup.classList.add("show");
-
-    // hide after 1.5 seconds
-    setTimeout(() => {
-        popup.classList.remove("show");
-    }, 1500);
-}
-
-// replace the alert for round results
-if (currentRound >= maxRound) {
-    let finalMessage = "";
-    if (playerScore > computerScore) finalMessage = "🎉 You are the Champion!";
-    else if (playerScore < computerScore) finalMessage = "🤖 Computer Wins the Match!";
-    else finalMessage = "😐 It's a Tie Overall!";
-
-    showRoundResult(finalMessage);
-}
