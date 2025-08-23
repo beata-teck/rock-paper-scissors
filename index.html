@@ -1,31 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock paper scissor Game</title>
-    <link rel="stylesheet" href="style/index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock Paper Scissors Game</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h1>Rock Paper scissor</h1> 
-<div id="round-selection">
-<button id="round5">5 Round</button>
-<button id="round7">7 Round</button>
-</div>  
-<div id="game-buttons">
-    <button class="choice" data-choice="rock">Rock</button>
- <button class="choice" data-choice="paper">Paper</button>
-  <button class="choice" data-choice="scissor">scissor</button>
-</div> 
-<div id="score-board">
-    <p>player: <span id="player-score"></span></p>
-   <p>computer: <span id="computer-score"></span></p>
-   <p>Round: <span id="current-round"></span></p>
-</div>
-<div id="result">
+  <h1>✊ ✋ ✌️ Rock Paper Scissors</h1>
 
-</div>
-<button id="restart">Restart The Game</button>
-<script src="script.js"></script>
+  <div id="round-selection">
+    <button id="round5">5 Rounds</button>
+    <button id="round7">7 Rounds</button>
+  </div>
+
+  <div id="game-buttons">
+    <button class="choice" data-choice="rock">✊ Rock</button>
+    <button class="choice" data-choice="paper">✋ Paper</button>
+    <button class="choice" data-choice="scissor">✌️ Scissor</button>
+  </div>
+
+  <div id="choices-display">
+    <p>👩 Player chose: <span id="player-choice">-</span></p>
+    <p>💻 Computer chose: <span id="computer-choice">-</span></p>
+  </div>
+
+  <div id="score-board">
+    <p>👩 Player: <span id="player-score">0</span></p>
+    <p>💻 Computer: <span id="computer-score">0</span></p>
+    <p>🎯 Round: <span id="current-round">0</span></p>
+  </div>
+
+  <div id="result"></div>
+
+  <button id="restart">🔄 Restart The Game</button>
+
+  <script src="script.js"></script>
 </body>
 </html>
