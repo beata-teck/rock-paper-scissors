@@ -110,3 +110,21 @@ button:hover {
     width: 100%;
   }
 }
+#battle-stage{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  margin: 20px 0;
+  font-size: 60px;
+
+}
+.hand{
+animation: shake 0.6s ease-in-out 2;
+}
+@keyframes shake {
+  0%,100% { transform: translate(0);}
+  25%{transform: translateY(-15px);}
+  50%{transform: translateY(15px);}
+75%{transform: translateY(-15px);}
+}
