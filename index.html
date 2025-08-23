@@ -7,48 +7,57 @@
   <link rel="stylesheet" href="style/index.css">
 </head>
 <body>
-  <h1>✊ ✋ ✌️ Rock Paper Scissors</h1>
+  <h1>Rock Paper Scissors</h1>
 
+  <!-- Info button -->
+  <button id="info-btn">ℹ️ How to Play</button>
+
+  <!-- Info popup -->
+  <div id="info-popup" class="hidden">
+    <h3>How to Play</h3>
+    <p>🎮 Choose Rock 🪨, Paper 📄, or Scissors ✂️.</p>
+    <p>🤖 The computer will randomly choose its option.</p>
+    <p>🏆 Win rounds to score points. First to max rounds wins the game.</p>
+    <p>🔄 Click "Restart" to play again.</p>
+    <button id="close-info">Close</button>
+  </div>
+
+  <!-- Round selection -->
   <div id="round-selection">
     <button id="round5">5 Rounds</button>
     <button id="round7">7 Rounds</button>
   </div>
 
+  <!-- Battle stage -->
+  <div id="battle-stage">
+    <div id="player-hand" class="hand">👊</div>
+    <div id="computer-hand" class="hand">👊</div>
+  </div>
+
+  <!-- Game buttons -->
   <div id="game-buttons">
-    <button class="choice" data-choice="rock">✊ Rock</button>
-    <button class="choice" data-choice="paper">✋ Paper</button>
-    <button class="choice" data-choice="scissor">✌️ Scissor</button>
+    <button class="choice" data-choice="rock">👊</button>
+    <button class="choice" data-choice="paper">✋</button>
+    <button class="choice" data-choice="scissor">✌️</button>
   </div>
 
-  <div id="choices-display">
-    <p>👩 Player chose: <span id="player-choice">-</span></p>
-    <p>💻 Computer chose: <span id="computer-choice">-</span></p>
-  </div>
-  <button id="info-btn"> How to Play</button>
-  <div id="info-popup" class="hidden">
-    <h3>How to play Rock-Paper-Scissors</h3>
-    <p>choose rock , paper or scissor. using the above buttons</p>
-    <p>the computer will randomly choose its option</p>
-    <p>win a round to score points. <br> first to max round win the game</p>
-    <p>click the restart button to restart the game again</p>
-    <button id="close-info">close</button>
-  </div>
-
+  <!-- Scoreboard -->
   <div id="score-board">
-    <p>👩 Player: <span id="player-score">0</span></p>
-    <p>💻 Computer: <span id="computer-score">0</span></p>
-    <p>🎯 Round: <span id="current-round">0</span></p>
+    <p>Player: <span id="player-score">0</span></p>
+    <p>Computer: <span id="computer-score">0</span></p>
+    <p>Round: <span id="current-round">0</span></p>
   </div>
-<div id="battle-stage">
-    <div id="player-hand" class="hand">✊</div>
-    <div id="computer-hand" class="hand">✊</div>
-</div>
-<div id="round-result-popup" class="hidden">
-    <p id="round-result-message"></p>
-</div>
+
+  <!-- Result message -->
   <div id="result"></div>
 
-  <button id="restart">🔄 Restart The Game</button>
+  <!-- Round result popup -->
+  <div id="round-result-popup">
+    <p id="round-result-message"></p>
+  </div>
+
+  <!-- Restart -->
+  <button id="restart">Restart Game</button>
 
   <script src="script.js"></script>
 </body>
