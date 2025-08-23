@@ -10,7 +10,6 @@ body {
 /* Buttons */
 #game-buttons button,
 #round-selection button,
-#restart,
 #info-btn {
   padding: 0.5rem 1rem;
   margin: 0.5rem;
@@ -21,6 +20,14 @@ body {
   background: #3b82f6;
   color: white;
   transition: background 0.2s;
+}
+#restart{
+  position: fixed;
+  bottom: 10px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  z-index: 300;
+  background: #3b82f6;
 }
 
 #game-buttons button:hover,
