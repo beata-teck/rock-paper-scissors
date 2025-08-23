@@ -10,7 +10,9 @@ body {
 /* Buttons */
 #game-buttons button,
 #round-selection button,
-#info-btn {
+#restart,
+#info-btn,
+#setName {
   padding: 0.5rem 1rem;
   margin: 0.5rem;
   font-size: 1rem;
@@ -21,19 +23,12 @@ body {
   color: white;
   transition: background 0.2s;
 }
-#restart{
-  position: fixed;
-  bottom: 10px;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  z-index: 300;
-  background: #3b82f6;
-}
 
 #game-buttons button:hover,
 #round-selection button:hover,
 #restart:hover,
-#info-btn:hover {
+#info-btn:hover,
+#setName:hover {
   background: #2563eb;
 }
 
@@ -92,26 +87,39 @@ body {
   top: 50px;
   left: 10px;
   transform: none;
+  width: 250px;
+  max-width: 90%;
   background: white;
   color: #333;
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.5);
   z-index: 200;
-  width: 250px;
-  max-width: 90%;
   text-align: left;
 }
 
 #info-popup h3 {
   margin-top: 0;
 }
-#info-btn{
+
+/* Player name input */
+#player-name-input {
+  margin: 1rem 0;
+}
+
+/* Restart button fixed in bottom-right */
+#restart {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 300;
+}
+
+/* Info button fixed in upper-left */
+#info-btn {
   position: fixed;
   top: 10px;
   left: 10px;
-  padding: 0.4rem 0.8rem;
-  font-size: 1rem;
   z-index: 300;
 }
 

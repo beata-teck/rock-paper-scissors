@@ -3,6 +3,7 @@ let playerScore = 0;
 let computerScore = 0;
 let currentRound = 0;
 let maxRound = 5;
+let playerName = "Player"; // default
 
 const choiceEmojis = { rock:"🪨", paper:"📄", scissor:"✂️" };
 
@@ -25,8 +26,9 @@ function playRound(playerChoice, computerChoice) {
 
 // Update score and result
 function updateScore(result, playerChoice, computerChoice){
-  let message = `You chose ${choiceEmojis[playerChoice]}, Computer chose ${choiceEmojis[computerChoice]} → `;
-  if(result==="player"){ playerScore++; message+="You Won 🎉"; document.getElementById("result").style.color="green"; }
+  let message = `${playerName} chose ${choiceEmojis[playerChoice]}, Computer chose ${choiceEmojis[computerChoice]} → `;
+  if(result==="player"){ playerScore++; message+=`${playerName} Won 🎉`; 
+  document.getElementById("result").style.color="green"; }
   else if(result==="computer"){ computerScore++; message+="Computer Won 🤖"; document.getElementById("result").style.color="red"; }
   else { message+="It's a Draw 😐"; document.getElementById("result").style.color="orange"; }
 
@@ -34,6 +36,9 @@ function updateScore(result, playerChoice, computerChoice){
   document.getElementById("computer-score").innerText = computerScore;
   document.getElementById("current-round").innerText = currentRound;
   document.getElementById("result").innerText = message;
+
+  // Update player label in scoreboard
+  document.getElementById("player-score-label").childNodes[0].textContent = playerName + ": ";
 }
 
 // Show round popup
@@ -54,6 +59,10 @@ function restartGame(){
   document.getElementById("result").innerText="";
   document.getElementById("player-hand").innerText="👊";
   document.getElementById("computer-hand").innerText="👊";
+
+  // Show name input again
+  document.getElementById("player-name-input").style.display = "block";
+  playerName = "Player";
 }
 
 // Choice button clicks
@@ -84,12 +93,12 @@ document.querySelectorAll(".choice").forEach(button=>{
       // Show final winner
       if(currentRound>=maxRound){
         let finalMessage="";
-        if(playerScore>computerScore) finalMessage="🎉 You are the Champion!";
+        if(playerScore>computerScore) finalMessage=`🎉 ${playerName} is the Champion!`;
         else if(playerScore<computerScore) finalMessage="🤖 Computer Wins the Match!";
         else finalMessage="😐 It's a Tie Overall!";
         showRoundResult(finalMessage);
       }
-    },1200);
+    }, 1200);
   });
 });
 
@@ -98,7 +107,18 @@ document.getElementById("round5").addEventListener("click", ()=>maxRound=5);
 document.getElementById("round7").addEventListener("click", ()=>maxRound=7);
 
 // Restart button
-document.getElementById("restart").addEventListener("click",restartGame);
+document.getElementById("restart").addEventListener("click", restartGame);
+
+// Set player name
+document.getElementById("setName").addEventListener("click", ()=>{
+  const input = document.getElementById("playerName").value.trim();
+  if(input) playerName = input;
+  document.getElementById("player-name-input").style.display = "none";
+
+  // Update scoreboard label immediately
+  document.getElementById("player-score-label").childNodes[0].textContent = playerName + ": ";
+});
+
 // Info popup
 const infoPopup = document.getElementById("info-popup");
 document.getElementById("info-btn").addEventListener("click", ()=> infoPopup.classList.remove("hidden"));
