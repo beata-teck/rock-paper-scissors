@@ -117,3 +117,24 @@ infoBtn.addEventListener("click",()=>{
 closeInfo.addEventListener("click",()=>{
     infoPopUp.classList.add("hidden");
 });
+function showRoundResult(message) {
+    const popup = document.getElementById("round-result-popup");
+    const msg = document.getElementById("round-result-message");
+    msg.innerText = message;
+    popup.classList.add("show");
+
+    // hide after 1.5 seconds
+    setTimeout(() => {
+        popup.classList.remove("show");
+    }, 1500);
+}
+
+// replace the alert for round results
+if (currentRound >= maxRound) {
+    let finalMessage = "";
+    if (playerScore > computerScore) finalMessage = "🎉 You are the Champion!";
+    else if (playerScore < computerScore) finalMessage = "🤖 Computer Wins the Match!";
+    else finalMessage = "😐 It's a Tie Overall!";
+
+    showRoundResult(finalMessage);
+}
