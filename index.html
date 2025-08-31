@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock Paper Scissors Game</title>
+  <link rel="stylesheet" href="style/index.css">
+</head>
+<body>
+  <h1>Rock Paper Scissors</h1>
+
+  <!-- Info button -->
+  <button id="info-btn">ℹ️ How to Play</button>
+
+  <!-- Info popup -->
+  <div id="info-popup" class="hidden">
+    <h3>How to Play</h3>
+    <p>🎮 Choose Rock 🪨, Paper 📄, or Scissors ✂️.</p>
+    <p>🤖 The computer will randomly choose its option.</p>
+    <p>🏆 Win rounds to score points. First to max rounds wins the game.</p>
+    <p>🔄 Click "Restart" to play again.</p>
+    <button id="close-info">Close</button>
+  </div>
+  <div id="player-name-input">
+    <label for="playerName">Enter Your Name :</label>
+    <input type="text" id="playerName"
+    placeholder="your name">
+    <button id="setName">Start Game</button>
+  </div>
+
+  <!-- Round selection -->
+  <div id="round-selection">
+    <button id="round5">5 Rounds</button>
+    <button id="round7">7 Rounds</button>
+  </div>
+
+  <!-- Battle stage -->
+  <div id="battle-stage">
+    <div id="player-hand" class="hand">👊</div>
+    <div id="computer-hand" class="hand">👊</div>
+  </div>
+
+  <!-- Game buttons -->
+  <div id="game-buttons">
+    <button class="choice" data-choice="rock">👊</button>
+    <button class="choice" data-choice="paper">✋</button>
+    <button class="choice" data-choice="scissor">✌️</button>
+  </div>
+
+  <!-- Scoreboard -->
+  <div id="score-board">
+    <p>Player: <span id="player-score">0</span></p>
+    <p>Computer: <span id="computer-score">0</span></p>
+    <p>Round: <span id="current-round">0</span></p>
+  </div>
+
+  <!-- Result message -->
+  <div id="result"></div>
+
+  <!-- Round result popup -->
+  <div id="round-result-popup">
+    <p id="round-result-message"></p>
+  </div>
+
+  <!-- Restart -->
+  <button id="restart">Restart Game</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
