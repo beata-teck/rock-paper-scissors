@@ -1,5 +1,4 @@
 // Game state
-// Game state
 let playerScore = 0;
 let computerScore = 0;
 let currentRound = 0;
@@ -35,27 +34,28 @@ function updateScore(result, playerChoice, computerChoice) {
     playerScore++;
     message += `${playerName} Won 🎉`;
     document.getElementById("result").style.color = "green";
-    popup.style.background = "#d1fae5"; // light green
+    popup.style.background = "#d1fae5";
   } else if (result === "computer") {
     computerScore++;
     message += "Computer Won 🤖";
     document.getElementById("result").style.color = "red";
-    popup.style.background = "#fee2e2"; // light red
+    popup.style.background = "#fee2e2";
   } else {
     message += "It's a Draw 😐";
     document.getElementById("result").style.color = "orange";
-    popup.style.background = "#fef3c7"; // light orange
+    popup.style.background = "#fef3c7";
   }
 
+  // Update scoreboard
   document.getElementById("player-score").innerText = playerScore;
   document.getElementById("computer-score").innerText = computerScore;
   document.getElementById("current-round").innerText = currentRound;
   document.getElementById("result").innerText = message;
 
-  // Update player label in scoreboard
+  // Update player label
   document.getElementById("player-score-label").childNodes[0].textContent = playerName + ": ";
 
-  // ✅ Show round result popup
+  // Show round result popup
   popupMessage.innerText = message;
   popup.classList.add("show");
 
@@ -66,7 +66,9 @@ function updateScore(result, playerChoice, computerChoice) {
 
 // Restart game
 function restartGame() {
-  playerScore = 0; computerScore = 0; currentRound = 0;
+  playerScore = 0;
+  computerScore = 0;
+  currentRound = 0;
   document.getElementById("player-score").innerText = 0;
   document.getElementById("computer-score").innerText = 0;
   document.getElementById("current-round").innerText = 0;
@@ -107,7 +109,7 @@ document.querySelectorAll(".choice").forEach(button => {
       const result = playRound(playerChoice, computerChoice);
       updateScore(result, playerChoice, computerChoice);
 
-      // ✅ If last round, show alert with final winner
+      // If last round, show alert with final winner
       if (currentRound >= maxRound) {
         document.querySelectorAll(".choice").forEach(btn => btn.disabled = true);
 
@@ -123,7 +125,6 @@ document.querySelectorAll(".choice").forEach(button => {
             finalMessage = "It's a draw! 😐";
           }
 
-          // Simple, reliable alert
           alert(finalMessage);
 
         }, 200);
@@ -132,7 +133,7 @@ document.querySelectorAll(".choice").forEach(button => {
   });
 });
 
-// Round selection — safe even if buttons missing
+// Round selection
 const round5Btn = document.getElementById("round5");
 if (round5Btn) round5Btn.addEventListener("click", () => maxRound = 5);
 

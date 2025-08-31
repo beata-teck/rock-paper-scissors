@@ -63,7 +63,7 @@ body {
   position: fixed;
   top: 20%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) scale(0.95);
   background: rgba(255,255,255,0.95);
   color: #333;
   padding: 1.5rem 2rem;
@@ -79,6 +79,8 @@ body {
 
 #round-result-popup.show {
   opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) scale(1);
 }
 
 /* Info popup */
@@ -88,7 +90,6 @@ body {
   position: fixed;
   top: 50px;
   left: 10px;
-  transform: none;
   width: 250px;
   max-width: 90%;
   background: white;
